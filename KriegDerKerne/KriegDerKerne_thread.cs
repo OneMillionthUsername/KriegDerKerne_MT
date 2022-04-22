@@ -25,37 +25,31 @@ namespace KriegDerKerne
 			{
 				enemies.Add(new Enemy(rnd.Next(0, maxX), rnd.Next(0, maxY)));
 			}
-			foreach (Enemy e in enemies)
-			{
-				e.DrawEntity();
-				Thread rndMove = new(new ThreadStart(() => e.MoveRandom()));
-				rndMove.Start();
-			}
 
 			//Erzeuge den Spieler
 			Player player = new();
-			player.DrawEntity();
 
 			//erzeuge die Threads
 			//Thread playerMove = new(new ThreadStart(() => player.Move()));
 			//Thread playerShoot = new(new ThreadStart(() => player.Shoot()));
-			Thread checkInput = new(new ThreadStart(() => Input()));
-			Thread BufferThread = new(new ThreadStart(() => Buffer(Input(), player)));
+			Thread checkInput = new(new ThreadStart(() => Input(player)));
 			Thread Draw = new(new ThreadStart(() => DrawGraphics(player)));
 
-			//starte die Threads
-			Threads(checkInput, BufferThread, Draw);
-
-			do
-			{
-				foreach (Enemy enemy in enemies)
-				{
-					DrawGraphics(enemy);
-				};
-				DrawGraphics(player);
-			} while (true);
 
 			//Hauptschleife
+			do
+			{
+				foreach (Enemy e in enemies)
+				{
+					e.DrawEntity();
+					Thread rndMove = new(new ThreadStart(() => e.MoveRandom()));
+					Thread DrawEnemy = new(new ThreadStart(() => DrawGraphics(e)));
+					Threads(rndMove, DrawEnemy);
+				}
+				//starte die Threads
+				Threads(checkInput, Draw);
+				//code
+			} while (true);
 			Console.Clear();
 			Console.SetCursorPosition(maxX / 2, maxY / 2);
 			Console.WriteLine("GG!");
@@ -66,63 +60,66 @@ namespace KriegDerKerne
 
 			foreach (Thread thread in threads)
 			{
-				thread.Start();
-				q.Enqueue(thread);
+				if(thread.ThreadState != ThreadState.Running)
+				{
+					thread.Start();
+					q.Enqueue(thread); 
+				} 
 			}
 		}
-		public static ConsoleKey Input()
+		public static void Input(Entity entity)
 		{
-			//if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
-			//{
-			//	return ConsoleKey.Spacebar;
-			//}
+			if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+			{
+
+			}
 			if (Console.ReadKey(true).Key == ConsoleKey.A)
 			{
-				return ConsoleKey.A;
+				//move left
+				entity.PosX -= 1;
 			}
 			if (Console.ReadKey(true).Key == ConsoleKey.D)
 			{
-				return ConsoleKey.D;
+				//move right
+				entity.PosX += 1;
 			}
 			if (Console.ReadKey(true).Key == ConsoleKey.W)
 			{
-				return ConsoleKey.W;
+				//move up
+				entity.PosY += 1;
 			}
 			if (Console.ReadKey(true).Key == ConsoleKey.S)
 			{
-				return ConsoleKey.S;
+				//move down
+				entity.PosY -= 1;
 			}
-			return ConsoleKey.Spacebar;
 		}
 		public static void Buffer(ConsoleKey consoleKey, Entity entity)
 		{
-			do
+			if (0 == consoleKey.CompareTo(ConsoleKey.Spacebar))
 			{
-				if (0 == consoleKey.CompareTo(ConsoleKey.Spacebar))
-				{
-					//Schussbereit
-				}
-				if (0 == consoleKey.CompareTo(ConsoleKey.A))
-				{
-					//move left
-					entity.PosX -= 1;
-				}
-				if (0 == consoleKey.CompareTo(ConsoleKey.S))
-				{
-					//move down
-					entity.PosY -= 1;
-				}
-				if (0 == consoleKey.CompareTo(ConsoleKey.D))
-				{
-					//move right
-					entity.PosX += 1;
-				}
-				if (0 == consoleKey.CompareTo(ConsoleKey.W))
-				{
-					//move up
-					entity.PosY += 1;
-				}
-			} while (true);
+				//Schussbereit
+			}
+			if (0 == consoleKey.CompareTo(ConsoleKey.A))
+			{
+				//move left
+				entity.PosX -= 1;
+			}
+			if (0 == consoleKey.CompareTo(ConsoleKey.S))
+			{
+				//move down
+				entity.PosY -= 1;
+			}
+			if (0 == consoleKey.CompareTo(ConsoleKey.D))
+			{
+				//move right
+				entity.PosX += 1;
+			}
+			if (0 == consoleKey.CompareTo(ConsoleKey.W))
+			{
+				//move up
+				entity.PosY += 1;
+			}
 		}
 		public static void DrawGraphics(Entity entity)
 		{
