@@ -34,20 +34,23 @@ namespace KriegDerKerne
 			//Thread playerShoot = new(new ThreadStart(() => player.Shoot()));
 			Thread checkInput = new(new ThreadStart(() => Input(player)));
 			Thread Draw = new(new ThreadStart(() => DrawGraphics(player)));
-
+			Thread pMove = new(new ThreadStart(() => player.Move()));
 
 			//Hauptschleife
+
 			do
 			{
 				foreach (Enemy e in enemies)
 				{
-					e.DrawEntity();
-					Thread rndMove = new(new ThreadStart(() => e.MoveRandom()));
-					Thread DrawEnemy = new(new ThreadStart(() => DrawGraphics(e)));
-					Threads(rndMove, DrawEnemy);
+					//e.DrawEntity();
+					e.MoveRandom();
+					//Thread rndMove = new(new ThreadStart(() => e.MoveRandom()));
+					//Thread DrawEnemy = new(new ThreadStart(() => DrawGraphics(e)));
+					//Threads(rndMove);
 				}
+
 				//starte die Threads
-				Threads(checkInput, Draw);
+				Threads(Draw, pMove);
 				//code
 			} while (true);
 			Console.Clear();

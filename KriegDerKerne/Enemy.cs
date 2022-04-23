@@ -16,6 +16,7 @@ namespace KriegDerKerne
 			Name = _name;
 		}
 		//Methoden
+
 		public void MoveRandom()
 		{
 			Random rnd = new();
@@ -23,6 +24,7 @@ namespace KriegDerKerne
 			//warte auf Eingabe?
 			//starte Bewegung der Gegner - Code aus der Klasse ausführen?
 			//Lösche Gegner auf pos xy
+			DeleteEntity();
 			//berechne position neu
 			#region POSITION BERECHNEN
 			if (PosY > 0 && PosY < _maxY)
@@ -71,6 +73,7 @@ namespace KriegDerKerne
 					PosX -= 1;
 				}
 			}
+			DrawEntity();
 			#endregion
 			Thread.Sleep(10);
 		}

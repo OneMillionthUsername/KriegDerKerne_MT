@@ -21,41 +21,34 @@ namespace KriegDerKerne
 
 		public void Move()
 		{
-			do
+			if (Console.ReadKey(true).Key == ConsoleKey.A)
 			{
-				if (Console.ReadKey(true).Key == ConsoleKey.A)
-				{
-					Console.SetCursorPosition(PosX, PosY);
-					DeleteEntity();
-					PosX -= 1;
-					DrawEntity();
-					continue;
-				}
-				if (Console.ReadKey(true).Key == ConsoleKey.D)
-				{
-					Console.SetCursorPosition(PosX, PosY);
-					DeleteEntity();
-					PosX += 1;
-					DrawEntity();
-					continue;
-				}
-				if (Console.ReadKey(true).Key == ConsoleKey.W)
-				{
-					Console.SetCursorPosition(PosX, PosY);
-					DeleteEntity();
-					PosY -= 1;
-					DrawEntity();
-					continue;
-				}
-				if (Console.ReadKey(true).Key == ConsoleKey.S)
-				{
-					Console.SetCursorPosition(PosX, PosY);
-					DeleteEntity();
-					PosY += 1;
-					DrawEntity();
-					continue;
-				}
-			} while (true);
+				Console.SetCursorPosition(PosX, PosY);
+				DeleteEntity();
+				PosX -= 1;
+				DrawEntity();
+			}
+			if (Console.ReadKey(true).Key == ConsoleKey.D)
+			{
+				Console.SetCursorPosition(PosX, PosY);
+				DeleteEntity();
+				PosX += 1;
+				DrawEntity();
+			}
+			if (Console.ReadKey(true).Key == ConsoleKey.W)
+			{
+				Console.SetCursorPosition(PosX, PosY);
+				DeleteEntity();
+				PosY -= 1;
+				DrawEntity();
+			}
+			if (Console.ReadKey(true).Key == ConsoleKey.S)
+			{
+				Console.SetCursorPosition(PosX, PosY);
+				DeleteEntity();
+				PosY += 1;
+				DrawEntity();
+			}
 		}
 		public void Shoot()
 		{
