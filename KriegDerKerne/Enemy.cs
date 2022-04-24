@@ -7,6 +7,8 @@ namespace KriegDerKerne
 	{
 		//init fields
 		private readonly string _name = "\\_I_/";
+		Random rnd = new();
+		private int dice;
 
 		//Konstruktor
 		public Enemy(int posX, int posY)
@@ -19,8 +21,7 @@ namespace KriegDerKerne
 
 		public void MoveRandom()
 		{
-			Random rnd = new();
-			int dice;
+
 			//warte auf Eingabe?
 			//starte Bewegung der Gegner - Code aus der Klasse ausführen?
 			//Lösche Gegner auf pos xy

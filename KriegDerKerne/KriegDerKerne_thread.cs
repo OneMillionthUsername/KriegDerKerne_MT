@@ -12,7 +12,7 @@ namespace KriegDerKerne
 			//initialisiere Variablen und Objekte
 			Random rnd = new();
 			Console.CursorVisible = false;
-			int anzahlEnemies = 5, dice = 0;
+			int anzahlEnemies = 5;
 			int maxX = Console.WindowWidth - 1, maxY = Console.WindowHeight - 1;
 
 			// erzeuge Listen
@@ -28,16 +28,17 @@ namespace KriegDerKerne
 
 			//Erzeuge den Spieler
 			Player player = new();
+			player.DrawEntity();
 
 			//erzeuge die Threads
 			//Thread playerMove = new(new ThreadStart(() => player.Move()));
 			//Thread playerShoot = new(new ThreadStart(() => player.Shoot()));
-			Thread checkInput = new(new ThreadStart(() => Input(player)));
-			Thread Draw = new(new ThreadStart(() => DrawGraphics(player)));
+			//Thread checkInput = new(new ThreadStart(() => Input(player)));
+			//Thread Draw = new(new ThreadStart(() => DrawGraphics(player)));
 			Thread pMove = new(new ThreadStart(() => player.Move()));
-
+			pMove.Start();
+			pMove.Join();
 			//Hauptschleife
-
 			do
 			{
 				foreach (Enemy e in enemies)
@@ -50,7 +51,6 @@ namespace KriegDerKerne
 				}
 
 				//starte die Threads
-				Threads(Draw, pMove);
 				//code
 			} while (true);
 			Console.Clear();
