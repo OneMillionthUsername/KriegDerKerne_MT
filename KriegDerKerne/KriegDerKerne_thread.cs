@@ -18,6 +18,7 @@ namespace KriegDerKerne
 			// erzeuge Listen
 			List<Enemy> enemies = new();
 			List<Thread> threads = new();
+			ConcurrentQueue<Thread> q = new();
 
 			// erzeuge Objekte und füge sie zu einer Liste
 			// erzeuge die Gegner
@@ -31,43 +32,34 @@ namespace KriegDerKerne
 			player.DrawEntity();
 
 			//erzeuge die Threads
-			//Thread playerMove = new(new ThreadStart(() => player.Move()));
-			//Thread playerShoot = new(new ThreadStart(() => player.Shoot()));
-			//Thread checkInput = new(new ThreadStart(() => Input(player)));
-			//Thread Draw = new(new ThreadStart(() => DrawGraphics(player)));
-			Thread pMove = new(new ThreadStart(() => player.Move()));
-			pMove.Start();
-			pMove.Join();
+			//Thread pMove = new(new ThreadStart(() => player.Move()));
+			//q.Enqueue(pMove);
+			//Threads(pMove);
+
 			//Hauptschleife
 			do
 			{
 				foreach (Enemy e in enemies)
 				{
-					//e.DrawEntity();
 					e.MoveRandom();
-					//Thread rndMove = new(new ThreadStart(() => e.MoveRandom()));
-					//Thread DrawEnemy = new(new ThreadStart(() => DrawGraphics(e)));
-					//Threads(rndMove);
 				}
-
+				player.Move();
 				//starte die Threads
 				//code
 			} while (true);
+
 			Console.Clear();
 			Console.SetCursorPosition(maxX / 2, maxY / 2);
 			Console.WriteLine("GG!");
 		}
 		public static void Threads(params Thread[] threads)
 		{
-			ConcurrentQueue<Thread> q = new();
-
 			foreach (Thread thread in threads)
 			{
-				if(thread.ThreadState != ThreadState.Running)
+				if (thread.ThreadState != ThreadState.Running)
 				{
 					thread.Start();
-					q.Enqueue(thread); 
-				} 
+				}
 			}
 		}
 		public static void Input(Entity entity)

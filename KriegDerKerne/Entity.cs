@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace KriegDerKerne
 {
@@ -51,18 +52,18 @@ namespace KriegDerKerne
 			}
 		}
 		//methods
-		public void DrawEntity()
+		public static void DrawEntity(object obj, string name)
 		{
-			Console.SetCursorPosition(PosX, PosY);
-			Console.Write(Name);
+				Console.SetCursorPosition(PosX, PosY);
+				Console.Write(Name); 
 		}
-		public void DeleteEntity()
+		public static void DeleteEntity(object obj, string name)
 		{
-			string temp = Name;
-			Name = Name.Replace(Name, new String(' ', Name.Length));
-			Console.SetCursorPosition(PosX, PosY);
-			Console.Write(Name);
-			Name = temp;
-		}
+				string temp = Name;
+				Name = Name.Replace(Name, new String(' ', Name.Length));
+				Console.SetCursorPosition(PosX, PosY);
+				Console.Write(Name);
+				Name = temp; 
+		} 		
 	}
 }
