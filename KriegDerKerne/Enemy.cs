@@ -6,7 +6,7 @@ namespace KriegDerKerne
 	class Enemy : Entity
 	{
 		//init fields
-		private readonly string _name = "\\_I_/";
+		private string _name = "\\_I_/";
 		Random rnd = new();
 		private int dice;
 
@@ -72,7 +72,7 @@ namespace KriegDerKerne
 				}
 			}
 			DrawEntity();
-			Thread.Sleep(10);
+			Thread.Sleep(50);
 			#endregion
 		}
 	}

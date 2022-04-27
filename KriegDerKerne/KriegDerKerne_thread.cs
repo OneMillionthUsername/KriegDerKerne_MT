@@ -32,9 +32,9 @@ namespace KriegDerKerne
 			player.DrawEntity();
 
 			//erzeuge die Threads
-			//Thread pMove = new(new ThreadStart(() => player.Move()));
-			//q.Enqueue(pMove);
-			//Threads(pMove);
+			Thread pMove = new(new ThreadStart(() => player.Move()));
+			//Thread shoot = new(new ThreadStart(() => player.Shoot()));
+			Threads(pMove);
 
 			//Hauptschleife
 			do
@@ -43,7 +43,6 @@ namespace KriegDerKerne
 				{
 					e.MoveRandom();
 				}
-				player.Move();
 				//starte die Threads
 				//code
 			} while (true);
@@ -61,65 +60,6 @@ namespace KriegDerKerne
 					thread.Start();
 				}
 			}
-		}
-		public static void Input(Entity entity)
-		{
-			if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
-			{
-
-			}
-			if (Console.ReadKey(true).Key == ConsoleKey.A)
-			{
-				//move left
-				entity.PosX -= 1;
-			}
-			if (Console.ReadKey(true).Key == ConsoleKey.D)
-			{
-				//move right
-				entity.PosX += 1;
-			}
-			if (Console.ReadKey(true).Key == ConsoleKey.W)
-			{
-				//move up
-				entity.PosY += 1;
-			}
-			if (Console.ReadKey(true).Key == ConsoleKey.S)
-			{
-				//move down
-				entity.PosY -= 1;
-			}
-		}
-		public static void Buffer(ConsoleKey consoleKey, Entity entity)
-		{
-			if (0 == consoleKey.CompareTo(ConsoleKey.Spacebar))
-			{
-				//Schussbereit
-			}
-			if (0 == consoleKey.CompareTo(ConsoleKey.A))
-			{
-				//move left
-				entity.PosX -= 1;
-			}
-			if (0 == consoleKey.CompareTo(ConsoleKey.S))
-			{
-				//move down
-				entity.PosY -= 1;
-			}
-			if (0 == consoleKey.CompareTo(ConsoleKey.D))
-			{
-				//move right
-				entity.PosX += 1;
-			}
-			if (0 == consoleKey.CompareTo(ConsoleKey.W))
-			{
-				//move up
-				entity.PosY += 1;
-			}
-		}
-		public static void DrawGraphics(Entity entity)
-		{
-			entity.DeleteEntity();
-			entity.DrawEntity();
 		}
 	}
 }

@@ -36,7 +36,6 @@ namespace KriegDerKerne
 		public int PosY
 		{
 			get { return _PosY; }
-
 			set
 			{
 				_PosY = value;
@@ -52,18 +51,31 @@ namespace KriegDerKerne
 			}
 		}
 		//methods
-		public static void DrawEntity(object obj, string name)
+		public void DrawEntity()
 		{
 				Console.SetCursorPosition(PosX, PosY);
 				Console.Write(Name); 
 		}
-		public static void DeleteEntity(object obj, string name)
+		public void DrawEntity(int x, int y)
+		{
+			Console.SetCursorPosition(x, y);
+			Console.Write(Name);
+		}
+		public void DeleteEntity()
 		{
 				string temp = Name;
 				Name = Name.Replace(Name, new String(' ', Name.Length));
 				Console.SetCursorPosition(PosX, PosY);
 				Console.Write(Name);
 				Name = temp; 
-		} 		
+		}
+		public void DeleteEntity(int x, int y)
+		{
+			string temp = Name;
+			Name = Name.Replace(Name, new String(' ', Name.Length));
+			Console.SetCursorPosition(x, y);
+			Console.Write(Name);
+			Name = temp;
+		}
 	}
 }
