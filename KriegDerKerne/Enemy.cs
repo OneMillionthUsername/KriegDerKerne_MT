@@ -6,73 +6,73 @@ namespace KriegDerKerne
 	class Enemy : Entity
 	{
 		//init fields
-		private string _name = "\\_I_/";
-		Random rnd = new();
+		private readonly string _name = "\\_I_/";
+		readonly Random rnd = new();
 		private int dice;
 
-		//Konstruktor
-		public Enemy(int posX, int posY)
+		private int _x;
+		private int _y;
+
+		public int Y
 		{
-			PosX = posX;
-			PosY = posY;
+			get { return _y; }
+			private set
+			{
+				_y = _y < 1 ?  1 : value;
+				_y = _y > _maxY ? _maxY : value;
+			}
+		}
+		public int X
+		{
+			get { return _x; }
+			private set
+			{
+				_x = _x < 1 ? 1 : value;
+				_x = _x > _maxX ? _maxX : value;
+			}
+		}
+
+		//Konstruktor
+		public Enemy(int x, int y)
+		{
+			X = x;
+			Y = y;
 			Name = _name;
 		}
-		//Methoden
 
+		//Methoden
 		public void MoveRandom()
 		{
 			//Lösche Gegner auf pos xy
-			DeleteEntity();
+			DeleteEntity(X, Y);
 			//berechne position neu
 			#region POSITION BERECHNEN
-			if (PosY > 0 && PosY < _maxY)
-			{
+			//if (Y > 0 && Y < _maxY)
+			//{
 				dice = rnd.Next(1, 2 + 1);
 				if (dice > 1)
 				{
-					PosY -= 1;
+					Y -= 1;
 				}
 				else
 				{
-					PosY += 1;
+					Y += 1;
 				}
-			}
-			else
-			{
-				if (PosY == 0)
-				{
-					PosY += 1;
-				}
-				if (PosY == _maxY)
-				{
-					PosY -= 1;
-				}
-			}
-			if (PosX > 0 && PosX < _maxX)
-			{
+			//}
+			//if (X > 0 && X < _maxX)
+			//{
 				dice = rnd.Next(1, 2 + 1);
 				if (dice > 1)
 				{
-					PosX -= 1;
+					X -= 1;
 				}
 				else
 				{
-					PosX += 1;
+					X += 1;
 				}
-			}
-			else
-			{
-				if (PosX == 0)
-				{
-					PosX += 1;
-				}
-				if (PosX == _maxX)
-				{
-					PosX -= 1;
-				}
-			}
-			DrawEntity();
-			Thread.Sleep(50);
+			//}
+			DrawEntity(X, Y);
+			Thread.Sleep(20);
 			#endregion
 		}
 	}

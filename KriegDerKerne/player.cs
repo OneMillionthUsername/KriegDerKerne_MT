@@ -6,60 +6,81 @@ namespace KriegDerKerne
 	class Player : Entity
 	{
 		//init fields
-		private string _name = "<-O->";
+		private readonly string _name = "<-O->";
 
 		//init props
+		private int _x;
+		private int _y;
+		public int Y
+		{
+			get { return _y; }
+			set
+			{
+				_y = Y < 1 ? 1 : value;
+				_y = Y > _maxY ? _maxY : value;
+			}
+		}
+		public int X
+		{
+			get { return _x; }
+			set
+			{
+				_x = X < 1 ? 1 : value;
+				_x = X > _maxX ? _maxX : value;
+			}
+		}
 
 		//Konstruktor
 		public Player()
 		{
-			PosX = _maxX / 2;
-			PosY = _maxY;
+			X = _maxX / 2;
+			Y = _maxY;
 			Name = _name;
+			DrawEntity(X, Y);
 		}
-		// Methoden
 
+		// Methoden
 		public void Move()
 		{
 			do
 			{
+				DrawEntity();
 				if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
 				{
-					Laser laser = new(PosX, PosY);
+					Laser _ = new(X, Y);
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.A)
 				{
-					Console.SetCursorPosition(PosX, PosY);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					PosX -= 1;
-					DrawEntity();
+					X -= 1;
+
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.D)
 				{
-					Console.SetCursorPosition(PosX, PosY);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					PosX += 1;
-					DrawEntity();
+					X += 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.W)
 				{
-					Console.SetCursorPosition(PosX, PosY);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					PosY -= 1;
-					DrawEntity();
+					Y -= 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.S)
 				{
-					Console.SetCursorPosition(PosX, PosY);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					PosY += 1;
+					Y += 1;
 					DrawEntity();
 					continue;
 				}
+				Thread.Sleep(10);
 			} while (true);
 		}
 		

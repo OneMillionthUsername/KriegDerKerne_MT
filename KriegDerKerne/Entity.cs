@@ -6,74 +6,65 @@ namespace KriegDerKerne
 	public abstract class Entity
 	{
 		//Felder
-		public string _Name;
-		private int _PosX;
-		private int _PosY;
-		internal int _maxX = Console.WindowWidth, _maxY = Console.WindowHeight;
+		private string _Name;
+		private int _x;
+		private int _y;
+		public int _maxX = Console.WindowWidth - 1, _maxY = Console.WindowHeight - 1;
 		//properties
 		public string Name
 		{
 			get { return _Name; }
 			set { _Name = value; }
 		}
-		public int PosX
+		public int Y
 		{
-			get { return _PosX; }
+			get { return _y; }
 			set
 			{
-				_PosX = value;
-
-				if (_PosX == 0)
-				{
-					_PosX += 1;
-				}
-				if (_PosX == _maxX)
-				{
-					_PosX -= 1;
-				}
+				_y = Y < 1 ? 1 : value;
+				_y = Y > _maxY ? _maxY : value;
 			}
 		}
-		public int PosY
+		public int X
 		{
-			get { return _PosY; }
+			get { return _x; }
 			set
 			{
-				_PosY = value;
-
-				if (_PosY == 0)
-				{
-					_PosY += 1;
-				}
-				if (_PosY == _maxY)
-				{
-					_PosY -= 1;
-				}
+				_x = X < 1 ? 1 : value;
+				_x = X > _maxX ? _maxX : value;
 			}
 		}
 		//methods
 		public void DrawEntity()
 		{
-				Console.SetCursorPosition(PosX, PosY);
-				Console.Write(Name); 
+			Console.SetCursorPosition(X, Y);
+			Console.Write(Name);
 		}
+		//Funktion für Laser
 		public void DrawEntity(int x, int y)
 		{
-			Console.SetCursorPosition(x, y);
+			X = x;
+			Y = y;
+			Console.SetCursorPosition(X, Y);
+			//Console.Write(Name + " x: " + x + " y: " + y);
 			Console.Write(Name);
 		}
 		public void DeleteEntity()
 		{
-				string temp = Name;
-				Name = Name.Replace(Name, new String(' ', Name.Length));
-				Console.SetCursorPosition(PosX, PosY);
-				Console.Write(Name);
-				Name = temp; 
-		}
-		public void DeleteEntity(int x, int y)
-		{
 			string temp = Name;
 			Name = Name.Replace(Name, new String(' ', Name.Length));
-			Console.SetCursorPosition(x, y);
+			Console.SetCursorPosition(X, Y);
+			Console.Write(Name);
+			Name = temp;
+		}
+		//Funktion für Laser
+		public void DeleteEntity(int x, int y)
+		{
+			X = x;
+			Y = y;
+			string temp = Name;
+			Name = Name.Replace(Name, new String(' ', Name.Length));
+			Console.SetCursorPosition(X, Y);
 			Console.Write(Name);
 			Name = temp;
 		}

@@ -6,21 +6,28 @@ namespace KriegDerKerne
 	class Laser : Player
 	{
 		//init fields
-		private string _name = "|";
+		private readonly string _name = "|";
 
-		private int _laserPosX;
-		private int _laserPosY;
-		
-		public int LaserPosY
+		//init props
+		private int _x;
+		private int _y;
+		public new int Y
 		{
-			get { return _laserPosY; }
-			set { _laserPosY = value; }
+			get { return _y; }
+			set
+			{
+				_y = Y < 0 ? 0 : value;
+				_y = Y > _maxY ? _maxY : value;
+			}
 		}
-
-		public int LaserPosX
+		public new int X
 		{
-			get { return _laserPosX; }
-			set { _laserPosX = value; }
+			get { return _x; }
+			set
+			{
+				_x = X < 0 ? 0 : value;
+				_x = X > _maxX ? _maxX : value;
+			}
 		}
 
 		//Konstruktor
@@ -28,44 +35,42 @@ namespace KriegDerKerne
 		{
 			Console.SetCursorPosition(x, y);
 			//bringe Cursor in richtiger Position
-			LaserPosX = x+2;
-			LaserPosY = y-1;
+			X = x+2;
+			Y = y-1;
 			Name = _name;
-			Shoot();
+
+			Thread shoot = new(new ThreadStart(() => Shoot()));
+			shoot.Start();
 		}
 		// Methoden
 		public void Shoot()
 		{
+			//Startposition Laser
+			int i = Y;
+			DrawEntity(X, Y);
 			//SPIELER POSITION WIRD FALSCH AKTUALISIERT!
 			//Methode in die Laser Klasse verschieben?
 			do
 			{
 				// shoot
-				for (int i = LaserPosY; i < _maxY; i++)
-				{
-					if (i == _maxY || i >= _maxX)
-					{
-						DeleteEntity(LaserPosX, LaserPosY);
-						break;
-					}
-					DeleteEntity(LaserPosX, LaserPosY);
-					Console.SetCursorPosition(LaserPosX, LaserPosY);
-					LaserPosY -= 1;
-					DrawEntity(LaserPosX, LaserPosY);
+				DeleteEntity(X, Y);
+				Console.SetCursorPosition(X, Y);
+				Y -= 1;
+				DrawEntity(X, Y);
 
-					if (LaserPosY == 0)
-					{
-						DeleteEntity(LaserPosX, LaserPosY);
-						break;
-					}
-					if (LaserPosY == _maxY)
-					{
-						DeleteEntity(LaserPosX, LaserPosY);
-						break;
-					}
-					Thread.Sleep(100);
+				if (Y == 0)
+				{
+					DeleteEntity(X, Y);
+					break;
 				}
-			} while (true);
+				if (Y == _maxY)
+				{
+					DeleteEntity(X, Y);
+					break;
+				}
+				i--;
+				Thread.Sleep(50);
+			} while (i > 0);
 		}
 	}
 }
