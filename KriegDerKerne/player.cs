@@ -8,48 +8,6 @@ namespace KriegDerKerne
 		//init fields
 		private readonly string _name = "<-O->";
 
-		//init props
-		//private int _x;
-		//private int _y;
-		//public new int Y
-		//{
-		//	get { return _y; }
-		//	set
-		//	{
-		//		if (Y < 1)
-		//		{
-		//			_y = 1;
-		//		}
-		//		else if (Y > _maxY)
-		//		{
-		//			_y = _maxY;
-		//		}
-		//		else
-		//		{
-		//			_y = value;
-		//		}
-		//	}
-		//}
-		//public new int X
-		//{
-		//	get { return _x; }
-		//	set
-		//	{
-		//		if (X < 1)
-		//		{
-		//			_x = 1;
-		//		}
-		//		else if (X > _maxX)
-		//		{
-		//			_x = _maxX;
-		//		}
-		//		else
-		//		{
-		//			_x = value;
-		//		}
-		//	}
-		//}
-
 		//Konstruktor
 		public Player()
 		{
@@ -75,7 +33,6 @@ namespace KriegDerKerne
 					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
 					_x -= 1;
-
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.D)
@@ -97,7 +54,6 @@ namespace KriegDerKerne
 					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
 					_y += 1;
-					DrawEntity();
 					continue;
 				}
 				Thread.Sleep(10);

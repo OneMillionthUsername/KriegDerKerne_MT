@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace KriegDerKerne
 {
@@ -11,7 +11,7 @@ namespace KriegDerKerne
 		private string _Name;
 		protected int _x;
 		protected int _y;
-		public int _maxX = Console.WindowWidth - 1, _maxY = Console.WindowHeight - 1;
+		protected int _maxX = Console.WindowWidth - 1, _maxY = Console.WindowHeight - 1;
 		//properties
 		public string Name
 		{
@@ -23,18 +23,7 @@ namespace KriegDerKerne
 			get { return _y; }
 			set
 			{
-				if (Y < 1)
-				{
-					_y = 1;
-				}
-				else if (Y > _maxY)
-				{
-					_y = _maxY;
-				}
-				else
-				{
 					_y = value;
-				}
 			}
 		}
 		public int X
@@ -42,18 +31,7 @@ namespace KriegDerKerne
 			get { return _x; }
 			set
 			{
-				if (X < 1)
-				{
-					_x = 1;
-				}
-				else if (X > _maxX)
-				{
-					_x = _maxX;
-				}
-				else
-				{
 					_x = value;
-				}
 			}
 		}
 		//methods
@@ -62,13 +40,6 @@ namespace KriegDerKerne
 			Console.SetCursorPosition(_x, _y);
 			Console.Write(Name);
 		}
-		//Funktion für Laser
-		//public void DrawEntity(int x, int y)
-		//{
-		//	Console.SetCursorPosition(x, y);
-		//	Console.Write(Name + " x: " + x + " y: " + y);
-		//	Console.Write(Name);
-		//}
 		public void DeleteEntity()
 		{
 			string temp = Name;
@@ -83,7 +54,7 @@ namespace KriegDerKerne
 			DeleteEntity();
 			//berechne position neu
 			#region POSITION BERECHNEN
-			if (Y > 0 && Y < _maxY)
+			if (_y > 0 && _y < _maxY)
 			{
 				dice = rnd.Next(1, 2 + 1);
 				if (dice > 1)
@@ -95,7 +66,18 @@ namespace KriegDerKerne
 					_y += 1;
 				}
 			}
-			if (X > 0 && X < _maxX)
+			else
+			{
+				if (_y <= 0)
+				{
+					_y += 1;
+				}
+				if (_y >= _maxY)
+				{
+					_y -= 1;
+				}
+			}
+			if (_x > 0 && _x < _maxX)
 			{
 				dice = rnd.Next(1, 2 + 1);
 				if (dice > 1)
@@ -107,19 +89,20 @@ namespace KriegDerKerne
 					_x += 1;
 				}
 			}
+			else
+			{
+				if (_x <= 0)
+				{
+					_x += 1;
+				}
+				if (_x >= _maxY)
+				{
+					_x -= 1;
+				}
+			}
 			DrawEntity();
-			//Thread.Sleep(20);
+			Thread.Sleep(20);
 			#endregion
 		}
-
-		//Funktion für Laser
-		//public void DeleteEntity(int x, int y)
-		//{
-		//	string temp = Name;
-		//	Name = Name.Replace(Name, new String(' ', Name.Length));
-		//	Console.SetCursorPosition(x, y);
-		//	Console.Write(Name);
-		//	Name = temp;
-		//}
 	}
 }
