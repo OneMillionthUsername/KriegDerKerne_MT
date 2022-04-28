@@ -9,34 +9,54 @@ namespace KriegDerKerne
 		private readonly string _name = "<-O->";
 
 		//init props
-		private int _x;
-		private int _y;
-		public int Y
-		{
-			get { return _y; }
-			set
-			{
-				_y = Y < 1 ? 1 : value;
-				_y = Y > _maxY ? _maxY : value;
-			}
-		}
-		public int X
-		{
-			get { return _x; }
-			set
-			{
-				_x = X < 1 ? 1 : value;
-				_x = X > _maxX ? _maxX : value;
-			}
-		}
+		//private int _x;
+		//private int _y;
+		//public new int Y
+		//{
+		//	get { return _y; }
+		//	set
+		//	{
+		//		if (Y < 1)
+		//		{
+		//			_y = 1;
+		//		}
+		//		else if (Y > _maxY)
+		//		{
+		//			_y = _maxY;
+		//		}
+		//		else
+		//		{
+		//			_y = value;
+		//		}
+		//	}
+		//}
+		//public new int X
+		//{
+		//	get { return _x; }
+		//	set
+		//	{
+		//		if (X < 1)
+		//		{
+		//			_x = 1;
+		//		}
+		//		else if (X > _maxX)
+		//		{
+		//			_x = _maxX;
+		//		}
+		//		else
+		//		{
+		//			_x = value;
+		//		}
+		//	}
+		//}
 
 		//Konstruktor
 		public Player()
 		{
-			X = _maxX / 2;
-			Y = _maxY;
+			_x = _maxX / 2;
+			_y = _maxY;
 			Name = _name;
-			DrawEntity(X, Y);
+			DrawEntity();
 		}
 
 		// Methoden
@@ -47,36 +67,36 @@ namespace KriegDerKerne
 				DrawEntity();
 				if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
 				{
-					Laser _ = new(X, Y);
+					Laser _ = new(_x, _y);
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.A)
 				{
-					Console.SetCursorPosition(X, Y);
+					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
-					X -= 1;
+					_x -= 1;
 
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.D)
 				{
-					Console.SetCursorPosition(X, Y);
+					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
-					X += 1;
+					_x += 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.W)
 				{
-					Console.SetCursorPosition(X, Y);
+					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
-					Y -= 1;
+					_y -= 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.S)
 				{
-					Console.SetCursorPosition(X, Y);
+					Console.SetCursorPosition(_x, _y);
 					DeleteEntity();
-					Y += 1;
+					_y += 1;
 					DrawEntity();
 					continue;
 				}

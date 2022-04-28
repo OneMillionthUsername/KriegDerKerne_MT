@@ -41,7 +41,7 @@ namespace KriegDerKerne
 				{
 					e.MoveRandom();
 				}
-				Thread.Sleep(10);
+				Thread.Sleep(100);
 				//code
 			} while (true);
 

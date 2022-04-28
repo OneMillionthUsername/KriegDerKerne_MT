@@ -9,34 +9,54 @@ namespace KriegDerKerne
 		private readonly string _name = "|";
 
 		//init props
-		private int _x;
-		private int _y;
-		public new int Y
-		{
-			get { return _y; }
-			set
-			{
-				_y = Y < 0 ? 0 : value;
-				_y = Y > _maxY ? _maxY : value;
-			}
-		}
-		public new int X
-		{
-			get { return _x; }
-			set
-			{
-				_x = X < 0 ? 0 : value;
-				_x = X > _maxX ? _maxX : value;
-			}
-		}
+		//private int _x;
+		//private int _y;
+		//public new int Y
+		//{
+		//	get { return _y; }
+		//	set
+		//	{
+		//		if (Y < 1)
+		//		{
+		//			_y = 1;
+		//		}
+		//		else if (Y > _maxY)
+		//		{
+		//			_y = _maxY;
+		//		}
+		//		else
+		//		{
+		//			_y = value;
+		//		}
+		//	}
+		//}
+		//public new int X
+		//{
+		//	get { return _x; }
+		//	set
+		//	{
+		//		if (X < 1)
+		//		{
+		//			_x = 1;
+		//		}
+		//		else if (X > _maxX)
+		//		{
+		//			_x = _maxX;
+		//		}
+		//		else
+		//		{
+		//			_x = value;
+		//		}
+		//	}
+		//}
 
 		//Konstruktor
 		public Laser(int x, int y)
 		{
 			Console.SetCursorPosition(x, y);
 			//bringe Cursor in richtiger Position
-			X = x+2;
-			Y = y-1;
+			_x = x+2;
+			_y = y-1;
 			Name = _name;
 
 			Thread shoot = new(new ThreadStart(() => Shoot()));
@@ -46,26 +66,26 @@ namespace KriegDerKerne
 		public void Shoot()
 		{
 			//Startposition Laser
-			int i = Y;
-			DrawEntity(X, Y);
+			int i = _y;
+			DrawEntity();
 			//SPIELER POSITION WIRD FALSCH AKTUALISIERT!
 			//Methode in die Laser Klasse verschieben?
 			do
 			{
 				// shoot
-				DeleteEntity(X, Y);
+				DeleteEntity();
 				Console.SetCursorPosition(X, Y);
 				Y -= 1;
-				DrawEntity(X, Y);
+				DrawEntity();
 
 				if (Y == 0)
 				{
-					DeleteEntity(X, Y);
+					DeleteEntity();
 					break;
 				}
 				if (Y == _maxY)
 				{
-					DeleteEntity(X, Y);
+					DeleteEntity();
 					break;
 				}
 				i--;
