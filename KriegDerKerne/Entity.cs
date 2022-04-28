@@ -7,6 +7,7 @@ namespace KriegDerKerne
 	{
 		//Felder
 		readonly Random rnd = new();
+		protected readonly object obj = new();
 		private int dice = new();
 		private string _Name;
 		protected int _x;
@@ -23,7 +24,7 @@ namespace KriegDerKerne
 			get { return _y; }
 			set
 			{
-					_y = value;
+				_y = value;
 			}
 		}
 		public int X
@@ -31,7 +32,7 @@ namespace KriegDerKerne
 			get { return _x; }
 			set
 			{
-					_x = value;
+				_x = value;
 			}
 		}
 		//methods
@@ -68,6 +69,7 @@ namespace KriegDerKerne
 			}
 			else
 			{
+				//wenn Position über die Grenzen geht
 				if (_y <= 0)
 				{
 					_y += 1;
@@ -91,6 +93,7 @@ namespace KriegDerKerne
 			}
 			else
 			{
+				//wenn Position über die Grenzen geht
 				if (_x <= 0)
 				{
 					_x += 1;

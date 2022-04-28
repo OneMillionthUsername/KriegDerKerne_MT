@@ -13,8 +13,8 @@ namespace KriegDerKerne
 		{
 			//bringe Cursor in richtiger Position
 			Console.SetCursorPosition(x, y);
-			_x = x+2;
-			_y = y-1;
+			_x = x + 2;
+			_y = y - 1;
 			Name = _name;
 
 			Thread shoot = new(new ThreadStart(() => Shoot()));
@@ -26,6 +26,7 @@ namespace KriegDerKerne
 			//Startposition Laser
 			int i = _y;
 			DrawEntity();
+
 			do
 			{
 				// shoot
