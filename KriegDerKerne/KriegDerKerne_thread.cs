@@ -27,7 +27,7 @@ namespace KriegDerKerne
 				enemies.Add(new Enemy(rnd.Next(0, maxX), rnd.Next(0, maxY)));
 			}
 
-			//Erzeuge Spieler
+			//Erzeuge Spieler		
 			Player player = new();
 
 			//erzeuge Threads
@@ -37,10 +37,10 @@ namespace KriegDerKerne
 			//Hauptschleife
 			do
 			{
-				foreach (Enemy e in enemies)
-				{
-					e.MoveRandom();
-				}
+				//foreach (Enemy e in enemies)
+				//{
+				//	e.MoveRandom();
+				//}
 				Thread.Sleep(100);
 				//code
 			} while (true);

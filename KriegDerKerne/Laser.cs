@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace KriegDerKerne
 {
-	class Laser : Player
+	class Laser : Entity
 	{
 		//init fields
 		private readonly string _name = "|";
@@ -12,9 +12,9 @@ namespace KriegDerKerne
 		public Laser(int x, int y)
 		{
 			//bringe Cursor in richtiger Position
-			Console.SetCursorPosition(x, y);
-			_x = x + 2;
-			_y = y - 1;
+			 Console.SetCursorPosition(x, y);
+			X = x + 2;
+			Y = y - 1;
 			Name = _name;
 
 			Thread shoot = new(new ThreadStart(() => Shoot()));
@@ -24,25 +24,20 @@ namespace KriegDerKerne
 		public void Shoot()
 		{
 			//Startposition Laser
-			int i = _y;
+			int i = Y;
 			DrawEntity();
 
 			do
 			{
 				// shoot
 				DeleteEntity();
-				Console.SetCursorPosition(_x, _y);
-				_y -= 1;
+				Console.SetCursorPosition(X, Y);
+				Y -= 1;
 				DrawEntity();
-
-				if (_y == 0)
-				{
-					DeleteEntity();
-					break;
-				}
 				i--;
 				Thread.Sleep(50);
 			} while (i > 0);
+			DeleteEntity();
 		}
 	}
 }

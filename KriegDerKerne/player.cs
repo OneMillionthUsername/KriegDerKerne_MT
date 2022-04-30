@@ -11,8 +11,8 @@ namespace KriegDerKerne
 		//Konstruktor
 		public Player()
 		{
-			_x = _maxX / 2;
-			_y = _maxY;
+			X = Console.WindowWidth / 2;
+			Y = Console.WindowHeight-1;
 			Name = _name;
 			DrawEntity();
 		}
@@ -25,35 +25,35 @@ namespace KriegDerKerne
 				DrawEntity();
 				if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
 				{
-					Laser _ = new(_x, _y);
+					Laser _ = new(X, Y);
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.A)
 				{
-					Console.SetCursorPosition(_x, _y);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					_x -= 1;
+					X -= 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.D)
 				{
-					Console.SetCursorPosition(_x, _y);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					_x += 1;
+					X += 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.W)
 				{
-					Console.SetCursorPosition(_x, _y);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					_y -= 1;
+					Y -= 1;
 					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.S)
 				{
-					Console.SetCursorPosition(_x, _y);
+					Console.SetCursorPosition(X, Y);
 					DeleteEntity();
-					_y += 1;
+					Y += 1;
 					continue;
 				}
 				Thread.Sleep(10);
