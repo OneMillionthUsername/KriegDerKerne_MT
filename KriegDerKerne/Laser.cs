@@ -12,7 +12,7 @@ namespace KriegDerKerne
 		public Laser(int x, int y)
 		{
 			//bringe Cursor in richtiger Position
-			 Console.SetCursorPosition(x, y);
+			Console.SetCursorPosition(x, y);
 			X = x + 2;
 			Y = y - 1;
 			Name = _name;
@@ -21,12 +21,11 @@ namespace KriegDerKerne
 			shoot.Start();
 		}
 		// Methoden
-		public void Shoot()
+		private void Shoot()
 		{
 			//Startposition Laser
 			int i = Y;
 			DrawEntity();
-
 			do
 			{
 				// shoot

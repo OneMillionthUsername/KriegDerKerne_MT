@@ -19,7 +19,6 @@ namespace KriegDerKerne
 			// erzeuge Listen
 			List<Enemy> enemies = new();
 			List<Thread> threads = new();
-			ConcurrentQueue<Thread> q = new();
 
 			// erzeuge die Gegner
 			for (int i = 0; i < anzahlEnemies; i++)
@@ -37,11 +36,10 @@ namespace KriegDerKerne
 			//Hauptschleife
 			do
 			{
-				//foreach (Enemy e in enemies)
-				//{
-				//	e.MoveRandom();
-				//}
-				Thread.Sleep(100);
+				foreach (Enemy e in enemies)
+				{
+					e.MoveRandom();
+				}
 				//code
 			} while (true);
 

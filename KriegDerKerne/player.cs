@@ -12,7 +12,7 @@ namespace KriegDerKerne
 		public Player()
 		{
 			X = Console.WindowWidth / 2;
-			Y = Console.WindowHeight-1;
+			Y = Console.WindowHeight - 1;
 			Name = _name;
 			DrawEntity();
 		}
@@ -59,6 +59,6 @@ namespace KriegDerKerne
 				Thread.Sleep(10);
 			} while (true);
 		}
-		
+
 	}
 }
