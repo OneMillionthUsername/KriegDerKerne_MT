@@ -59,6 +59,5 @@ namespace KriegDerKerne
 				Thread.Sleep(10);
 			} while (true);
 		}
-
 	}
 }

@@ -12,7 +12,6 @@ namespace KriegDerKerne
 			//initialisiere Variablen und Objekte
 			Random rnd = new();
 			Console.CursorVisible = false;
-			//Console.CursorSize = 0b1100100;
 			int anzahlEnemies = 5;
 			int score = 0;
 			int maxX = Console.WindowWidth - 1, maxY = Console.WindowHeight - 1;

@@ -56,7 +56,7 @@ namespace KriegDerKerne
 			Console.Write(Name);
 			Name = temp;
 		}
-		//DeleteLine produziert Grafikbugs 
+
 		//public static void DeleteLine()
 		//{
 		//	Console.SetCursorPosition(left: 0, top: 0);
