@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace KriegDerKerne
 {
-	class KriegDerKerne
+	class KriegDerKerne : Entity
 	{
 		static void Main()
 		{
@@ -14,6 +14,7 @@ namespace KriegDerKerne
 			Console.CursorVisible = false;
 			//Console.CursorSize = 0b1100100;
 			int anzahlEnemies = 5;
+			int score = 0;
 			int maxX = Console.WindowWidth - 1, maxY = Console.WindowHeight - 1;
 
 			// erzeuge Listen
@@ -41,11 +42,18 @@ namespace KriegDerKerne
 					e.MoveRandom();
 				}
 				//code
+				DrawScore(score);
 			} while (true);
-
+			
 			Console.Clear();
 			Console.SetCursorPosition(maxX / 2, maxY / 2);
 			Console.WriteLine("GG!");
+		}
+		public static void DrawScore(int score)
+		{
+			DeleteLine();
+			Console.SetCursorPosition(left: Console.WindowWidth-$"Punkte: {score}".Length, top: 0);
+			Console.WriteLine("Punkte: " + score);
 		}
 		public static void Threads(params Thread[] threads)
 		{
