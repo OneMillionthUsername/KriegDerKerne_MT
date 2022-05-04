@@ -51,7 +51,8 @@ namespace KriegDerKerne
 		}
 		public static void DrawScore(int score)
 		{
-			DeleteLine();
+			Console.SetCursorPosition(left: 0, top: 0);
+			Console.Write(new string(" ").PadRight(Console.WindowWidth));
 			Console.SetCursorPosition(left: Console.WindowWidth-$"Punkte: {score}".Length, top: 0);
 			Console.WriteLine("Punkte: " + score);
 		}

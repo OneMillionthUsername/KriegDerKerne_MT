@@ -56,10 +56,11 @@ namespace KriegDerKerne
 			Console.Write(Name);
 			Name = temp;
 		}
-		public static void DeleteLine()
-		{
-			Console.SetCursorPosition(left: 0, top: 0);
-			Console.Write(new string(" ").PadRight(Console.WindowWidth));
-		}
+		//DeleteLine produziert Grafikbugs 
+		//public static void DeleteLine()
+		//{
+		//	Console.SetCursorPosition(left: 0, top: 0);
+		//	Console.Write(new string(" ").PadRight(Console.WindowWidth));
+		//}
 	}
 }
