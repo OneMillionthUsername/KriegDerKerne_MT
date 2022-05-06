@@ -73,7 +73,10 @@ namespace KriegDerKerne
 				item.MoveRandom();
 			}
 			//IF TASTE GEDRÜCKT
-				player.Move();
+			if (Console.KeyAvailable)
+			{
+				player.Move(); 
+			}
 		}
 
 		public static void DrawScore(ref int score, ref int frame)
