@@ -10,7 +10,7 @@ namespace KriegDerKerne
 		private int _x;
 		private int _y;
 		private readonly int _maxX = Console.WindowWidth;
-		private readonly int _maxY = Console.WindowHeight - 2;
+		protected readonly int _maxY = Console.WindowHeight - 2;
 
 		//constructor
 
@@ -56,11 +56,5 @@ namespace KriegDerKerne
 			Console.Write(Name);
 			Name = temp;
 		}
-
-		//public static void DeleteLine()
-		//{
-		//	Console.SetCursorPosition(left: 0, top: 0);
-		//	Console.Write(new string(" ").PadRight(Console.WindowWidth));
-		//}
 	}
 }

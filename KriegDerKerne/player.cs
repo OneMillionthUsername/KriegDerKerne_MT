@@ -8,6 +8,8 @@ namespace KriegDerKerne
 		//init fields
 		private readonly string _name = "<-O->";
 
+		//init props
+
 		//Konstruktor
 		public Player()
 		{
@@ -24,7 +26,7 @@ namespace KriegDerKerne
 				//DrawEntity();
 				if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
 				{
-					Laser _ = new(X, Y);
+					Laser laser = new(X, Y);
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.A)
 				{

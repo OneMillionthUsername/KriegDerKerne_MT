@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -27,6 +26,7 @@ namespace KriegDerKerne
 			}
 			//Erzeuge Spieler		
 			Player player = new();
+			Laser laser = new(player.X, player.Y);
 
 			//erzeuge Threads
 			//Thread pMove = new(new ThreadStart(() => player.Move()));
@@ -36,9 +36,9 @@ namespace KriegDerKerne
 			do
 			{
 				//code
-				LöscheDisplay(enemies, player);
-				VerändereWerte(enemies, player);
-				Ausgabe(enemies, player);
+				LöscheDisplay(enemies, player, laser);
+				VerändereWerte(enemies, player, laser);
+				Ausgabe(enemies, player, laser);
 				DrawScore(ref score, ref frame);
 				Thread.Sleep(100);
 			} while (true);
@@ -48,7 +48,7 @@ namespace KriegDerKerne
 			Console.WriteLine("GG!");
 		}
 
-		private static void LöscheDisplay(List<Enemy> enemies, Player player)
+		private static void LöscheDisplay(List<Enemy> enemies, Player player, Laser laser)
 		{
 			foreach (var item in enemies)
 			{
@@ -57,7 +57,7 @@ namespace KriegDerKerne
 			player.DeleteEntity();
 		}
 
-		private static void Ausgabe(List<Enemy> enemies, Player player)
+		private static void Ausgabe(List<Enemy> enemies, Player player, Laser laser)
 		{
 			foreach (var item in enemies)
 			{
@@ -66,7 +66,7 @@ namespace KriegDerKerne
 			player.DrawEntity();
 		}
 
-		private static void VerändereWerte(List<Enemy> enemies, Player player)
+		private static void VerändereWerte(List<Enemy> enemies, Player player, Laser laser)
 		{
 			foreach (var item in enemies)
 			{
