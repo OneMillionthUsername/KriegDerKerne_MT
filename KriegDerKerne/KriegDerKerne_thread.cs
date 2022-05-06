@@ -38,10 +38,13 @@ namespace KriegDerKerne
 			{
 				foreach (Enemy e in enemies)
 				{
+					e.DeleteEntity();
 					e.MoveRandom();
+					e.DrawEntity();
 				}
 				//code
 				DrawScore(score);
+				Thread.Sleep(100);
 			} while (true);
 			
 			Console.Clear();

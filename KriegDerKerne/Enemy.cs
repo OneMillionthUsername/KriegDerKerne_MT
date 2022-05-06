@@ -23,7 +23,7 @@ namespace KriegDerKerne
 		public void MoveRandom()
 		{
 			//Lösche Gegner auf pos xy
-			DeleteEntity();
+			//DeleteEntity();
 			//berechne position neu
 			dice = rnd.Next(1, 2 + 1);
 			if (dice > 1)
@@ -43,8 +43,8 @@ namespace KriegDerKerne
 			{
 				X += 1;
 			}
-			DrawEntity();
-			Thread.Sleep(20);
+			//DrawEntity();
+			//Thread.Sleep(20);
 		}
 	}
 }
