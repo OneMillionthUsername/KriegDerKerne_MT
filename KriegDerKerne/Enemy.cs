@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading;
-using System.Collections;
-using System.Collections.Concurrent;
 
 namespace KriegDerKerne
 {
@@ -43,6 +40,7 @@ namespace KriegDerKerne
 			{
 				X += 1;
 			}
+			//Gib die Werte zurück => zeichne im nächsten Frame
 			//DrawEntity();
 			//Thread.Sleep(20);
 		}

@@ -17,26 +17,25 @@ namespace KriegDerKerne
 			Y = y - 1;
 			Name = _name;
 
-			Thread shoot = new(new ThreadStart(() => Shoot()));
-			shoot.Start();
+			//brauch ich wirklich einen Thread?
+			//Thread shoot = new(new ThreadStart(() => Shoot()));
+			//shoot.Start();
 		}
 		// Methoden
-		private void Shoot()
+		internal void Shoot()
 		{
 			//Startposition Laser
-			int i = Y;
-			DrawEntity();
-			do
-			{
-				// shoot
-				DeleteEntity();
+			//int i = Y;
+			//DrawEntity();
+				//shoot
+				//DeleteEntity();
 				Console.SetCursorPosition(X, Y);
 				Y -= 1;
-				DrawEntity();
-				i--;
-				Thread.Sleep(50);
-			} while (i > 0);
-			DeleteEntity();
+				//verändere den Wert und gib ihn zurück => Zeichne im nächsten Frame
+				//DrawEntity();
+				//i--;
+				//Thread.Sleep(50);
+			//DeleteEntity();
 		}
 	}
 }

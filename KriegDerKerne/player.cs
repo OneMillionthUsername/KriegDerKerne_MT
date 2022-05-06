@@ -14,50 +14,43 @@ namespace KriegDerKerne
 			X = Console.WindowWidth / 2;
 			Y = Console.WindowHeight - 1;
 			Name = _name;
-			DrawEntity();
+			//zeichne im nächsten Frame
+			//DrawEntity();
 		}
 
 		// Methoden
 		public void Move()
 		{
-			do
-			{
-				DrawEntity();
+				//DrawEntity();
 				if (Console.ReadKey(true).Key == ConsoleKey.Spacebar)
 				{
 					Laser _ = new(X, Y);
-					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.A)
 				{
 					Console.SetCursorPosition(X, Y);
-					DeleteEntity();
+					//DeleteEntity();
 					X -= 1;
-					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.D)
 				{
 					Console.SetCursorPosition(X, Y);
-					DeleteEntity();
+					//DeleteEntity();
 					X += 1;
-					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.W)
 				{
 					Console.SetCursorPosition(X, Y);
-					DeleteEntity();
+					//DeleteEntity();
 					Y -= 1;
-					continue;
 				}
 				if (Console.ReadKey(true).Key == ConsoleKey.S)
 				{
 					Console.SetCursorPosition(X, Y);
-					DeleteEntity();
+					//DeleteEntity();
 					Y += 1;
-					continue;
 				}
-				Thread.Sleep(10);
-			} while (true);
+				//Thread.Sleep(10);
 		}
 	}
 }
